@@ -13,10 +13,12 @@
         <%-- This is JSP comment --%>
         <%-- This comment will not be visible in the page source --%> 
         
+        <%@page import="java.util.*" %>
         <%-- Объявление переменных происходит именно так. Два варианта записи:
             1)XML запись через тег <jsp:declaration>
             2)<Быстрая запись через тег <%!>.
         Они абсолютно одинаковые для компилятора. --%>
+        
         <jsp:declaration>
             String name = test.testHelper.getRandomString();
         </jsp:declaration>
@@ -48,6 +50,7 @@
             <ul>"Current Date": <jsp:expression>date</jsp:expression></ul>
             <ul>"Your ID:": <%= session.getId() %>;
             </ul>
-        </list>
+        </list>    
+    <%@include file="../test/testGetParametersTable.jsp" %>
     </body>
 </html>

@@ -8,6 +8,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <%@page import="java.util.*" %>
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
@@ -17,11 +19,14 @@
             Password: <input type="password" name="password">
             <input type="submit" value="Submit">
         </form>
-
+        <%@include file="../test/testGetParametersTable.jsp" %>
+        <a href="../test/TestJSP.jsp">Follow the rabbit!</a>
+        <%-- 
         <jsp:useBean id="loginBean" scope="session" class="main.LoginHandler" />
         <jsp:setProperty name="loginBean" property="login"/>
         <jsp:setProperty name="loginBean" property="password"/>
         <jsp:getProperty name="loginBean" property="login" /><br>
-        <jsp:getProperty name="loginBean" property="password" />
+        <jsp:getProperty name="loginBean" property="password" /> 
+        --%>
     </body>
 </html>
