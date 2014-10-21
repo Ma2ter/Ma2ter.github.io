@@ -9,6 +9,7 @@ package main;
  *
  * @author Ma2ter
  */
+import helpers.CommonHelper;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,10 +17,10 @@ import java.util.logging.Logger;
 public class DBHandler {
 
     //Экземпляр объекта-одиночки.
-    String dbUrl = "jdbc:derby://localhost:1527/sample";
-    String Driver = "org.apache.derby.jdbc.ClientDriver";
-    String dbLogin = "Letanir";
-    String dbPassword = "1qaz@WSX";
+    static String dbUrl = CommonHelper.getInstance().getInitParam("dbUrl");
+    static String dbDriver = CommonHelper.getInstance().getInitParam("dbDriver");
+    static String dbLogin = CommonHelper.getInstance().getInitParam("dbLogin");
+    static String dbPassword = CommonHelper.getInstance().getInitParam("dbPassword");
 
     static DBHandler dbHandler = null;
 
@@ -37,6 +38,11 @@ public class DBHandler {
     }
 
     public ResultSet query(String cmd) {
+        try {
+            Class.forName(dbDriver);
+        } catch (Exception e) {
+            //TODO ТУТ БУДЕТ ВЫЗОВ ФУНКЦИИ ВЫДАЧИ ОШИБКИ
+        }
         ResultSet rs = null;
         Connection c = null;
         try {
@@ -44,7 +50,7 @@ public class DBHandler {
             Statement statement = c.createStatement();
             rs = statement.executeQuery(cmd);
         } catch (SQLException e) {
-            //ТУТ БУДЕТ ВЫЗОВ ФУНКЦИИ ВЫДАЧИ ОШИБКИ
+            //TODO ТУТ БУДЕТ ВЫЗОВ ФУНКЦИИ ВЫДАЧИ ОШИБКИ
             System.out.println(e.getMessage());
         } finally {
             try {

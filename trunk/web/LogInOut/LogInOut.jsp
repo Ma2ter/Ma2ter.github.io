@@ -8,7 +8,7 @@
     if (session.getAttribute("User") == null) {
             %>
 
-<form name="logInForm" action="<%= commonHelper.getRootPath(request) %>/LogInOut/LogIn.jsp" method="POST">
+<form name="logInForm" action="<%= commonHelper.getInitParam("rootPath") %>/LogInOut/LogIn.jsp" method="POST">
     Login: <input type="text" name="login"><br>
     Password: <input type="password" name="password">
     <input type="submit" value="Submit">
@@ -18,7 +18,7 @@
 
     <p>Hello <% User curUser = (User)(session.getAttribute("User"));
     out.print(curUser.getLogin());%>
-    <form name="logOutForm" action="<%= commonHelper.getRootPath(request) %>/LogInOut/LogOut.jsp" method="POST">
+    <form name="logOutForm" action="<%= commonHelper.getInitParam("rootPath") %>/LogInOut/LogOut.jsp" method="POST">
         <input type="submit" value="LogOut" name="Exot" />
     </form>
 

@@ -5,7 +5,9 @@
  */
 package helpers;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.ServletContext;
 
 /**
  *
@@ -28,9 +30,15 @@ public class CommonHelper {
     
 
     //Metod returns RootPath for web-application (in our case "/trunk")
-    public String getRootPath (HttpServletRequest request){
-        return rootPath == null ? request.getServletContext().getInitParameter("pathRoot"): rootPath;
-    };
+  /*  public String getRootPath (HttpServletRequest request){
+        return rootPath == null ? request.getServletContext().getInitParameter("rootPath"): rootPath;
+    };*/
+    public void setInitParam (ServletContext servletContext, String paramName){
+        initParamList.put(paramName, servletContext.getInitParameter(paramName));
+    }
     
-    private static String rootPath = null;
+    public String getInitParam (String paramName){
+        return initParamList.get(paramName);
+    }
+    private static Map <String, String> initParamList = new HashMap <String, String>();
 }
