@@ -18,7 +18,7 @@ Author     : admin
     <body>
         <h1>This is bad page</h1>
         <%@ include file = "/LogInOut/LogInOut.jsp" %>
-        <a href="<%= commonHelper.getRootPath(request) %>/test/Page2.jsp">Good page</a>
+        <a href="<%= commonHelper.getInitParam("rootPath") %>/test/Page2.jsp">Good page</a>
         <%! ResultSet rs = dbHandler.query("select * from USERS");%>
     </body>
 </html>

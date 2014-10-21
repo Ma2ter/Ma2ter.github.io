@@ -5,8 +5,24 @@
         <param-value>Development</param-value>
     </context-param>
     <context-param>
-        <param-name>pathRoot</param-name>
+        <param-name>rootPath</param-name>
         <param-value>/trunk</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbUrl</param-name>
+        <param-value>jdbc:derby://localhost:1527/sample</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbDriver</param-name>
+        <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbLogin</param-name>
+        <param-value>Letanir</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPassword</param-name>
+        <param-value>1qaz@WSX</param-value>
     </context-param>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
@@ -17,6 +33,11 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Init</servlet-name>
+        <servlet-class>main.Init</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
     <session-config>
         <session-timeout>
             30
