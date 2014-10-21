@@ -51,8 +51,9 @@ public class DBHandler {
                 + "WHERE login=\'%s\' and password=\'%s\' ", login, password);
         System.out.println(cmd);
         List<Map<String, Object>> result = (List<Map<String, Object>>) query(cmd, QueryType.SELECT_TYPE);
-        if(result != null)
-            return (int)result.get(0).get("COUNT") != 0 ? true : false;
+        if (result != null) {
+            return (int) result.get(0).get("COUNT") != 0 ? true : false;
+        }
         return false;
     }
 
@@ -71,6 +72,16 @@ public class DBHandler {
             switch (queryType) {
                 case SELECT_TYPE:
                     resSet = statement.executeQuery(cmd);
+                    ResultSet rs = (ResultSet) resSet;
+                    ResultSetMetaData metaData = rs.getMetaData();
+                    int colCount = metaData.getColumnCount();
+                    while (rs.next()) {
+                        Map<String, Object> columns = new HashMap<String, Object>();
+                        for (int i = 1; i <= colCount; i++) {
+                            columns.put(metaData.getColumnLabel(i), rs.getObject(i));
+                        }
+                        result.add(columns);
+                    }
                     break;
                 case UPDATE_TYPE:
                     resSet = statement.executeUpdate(cmd);
@@ -82,16 +93,6 @@ public class DBHandler {
             System.out.println(e.getMessage());
         } finally {
             try {
-                ResultSet rs = (ResultSet) resSet;
-                ResultSetMetaData metaData = rs.getMetaData();
-                int colCount = metaData.getColumnCount();
-                while (rs.next()) {
-                    Map<String, Object> columns = new HashMap<String, Object>();
-                    for (int i = 1; i <= colCount; i++) {
-                        columns.put(metaData.getColumnLabel(i), rs.getObject(i));
-                    }
-                    result.add(columns);
-                }
                 c.close();
             } catch (Exception ex) {
                 Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
