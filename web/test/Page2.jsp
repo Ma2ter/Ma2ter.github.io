@@ -12,8 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Page2</h1>
+        <h1>This is good page</h1>
         <%@ include file = "/LogInOut/LogInOut.jsp" %>
-        <a href="Page1.jsp">Bad page</a>
+        <a href="<%= commonHelper.getRootPath(request) %>/Page1.jsp">Bad page</a>
     </body>
 </html>

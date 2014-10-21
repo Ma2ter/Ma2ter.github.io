@@ -18,8 +18,8 @@ public class DBHandler {
     //Экземпляр объекта-одиночки.
     String dbUrl = "jdbc:derby://localhost:1527/sample";
     String Driver = "org.apache.derby.jdbc.ClientDriver";
-    String dbLogin = "app";
-    String dbPassword = "app";
+    String dbLogin = "Letanir";
+    String dbPassword = "1qaz@WSX";
 
     static DBHandler dbHandler = null;
 
