@@ -10,7 +10,7 @@
     </context-param>
     <context-param>
         <param-name>dbUrl</param-name>
-        <param-value>jdbc:derby://localhost:1527/sample</param-value>
+        <param-value>jdbc:derby://localhost:1527/Letanir</param-value>
     </context-param>
     <context-param>
         <param-name>dbDriver</param-name>
