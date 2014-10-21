@@ -63,7 +63,7 @@ public class DBHandler {
         } catch (Exception e) {
             //TODO ТУТ БУДЕТ ВЫЗОВ ФУНКЦИИ ВЫДАЧИ ОШИБКИ
         }
-        List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
+        Object result = "-1";
         Object resSet = null;
         Connection c = null;
         try {
@@ -75,16 +75,17 @@ public class DBHandler {
                     ResultSet rs = (ResultSet) resSet;
                     ResultSetMetaData metaData = rs.getMetaData();
                     int colCount = metaData.getColumnCount();
+                    result = new ArrayList<Map<String, Object>>();
                     while (rs.next()) {
                         Map<String, Object> columns = new HashMap<String, Object>();
                         for (int i = 1; i <= colCount; i++) {
                             columns.put(metaData.getColumnLabel(i), rs.getObject(i));
                         }
-                        result.add(columns);
+                        ((ArrayList<Map<String, Object>>)result).add(columns);
                     }
                     break;
                 case UPDATE_TYPE:
-                    resSet = statement.executeUpdate(cmd);
+                    result = statement.executeUpdate(cmd);
                     break;
             }
 
