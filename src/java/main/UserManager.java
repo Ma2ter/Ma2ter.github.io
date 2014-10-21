@@ -18,6 +18,7 @@ public class UserManager {
         userList.add(user);
         return user;
     };
+    //TODO
     static void deleteUser(User user){};
     static void findUserById(int id){};
     static void findUserBySessionId(String sessionID){};

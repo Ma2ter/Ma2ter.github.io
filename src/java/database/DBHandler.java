@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package database;
 
 /**
  *
@@ -11,6 +11,10 @@ package main;
  */
 import helpers.CommonHelper;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,29 +41,69 @@ public class DBHandler {
         return dbHandler;
     }
 
-    public ResultSet query(String cmd) {
+    public void addUser(String login, String password) {
+        String cmd = String.format("insert into USERS(login, password) values (\'%s\',\'%s\')", login, password);
+        query(cmd, QueryType.UPDATE_TYPE);
+    }
+
+    public Boolean checkUserExistence(String login, String password) {
+        String cmd = String.format("Select count(*) as COUNT from USERS "
+                + "WHERE login=\'%s\' and password=\'%s\' ", login, password);
+        System.out.println(cmd);
+        List<Map<String, Object>> result = (List<Map<String, Object>>) query(cmd, QueryType.SELECT_TYPE);
+        if(result != null)
+            return (int)result.get(0).get("COUNT") != 0 ? true : false;
+        return false;
+    }
+
+    public Object query(String cmd, QueryType queryType) {
         try {
             Class.forName(dbDriver);
         } catch (Exception e) {
             //TODO ТУТ БУДЕТ ВЫЗОВ ФУНКЦИИ ВЫДАЧИ ОШИБКИ
         }
-        ResultSet rs = null;
+        List<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
+        Object resSet = null;
         Connection c = null;
         try {
             c = DriverManager.getConnection(dbUrl, dbLogin, dbPassword);
             Statement statement = c.createStatement();
-            rs = statement.executeQuery(cmd);
+            switch (queryType) {
+                case SELECT_TYPE:
+                    resSet = statement.executeQuery(cmd);
+                    break;
+                case UPDATE_TYPE:
+                    resSet = statement.executeUpdate(cmd);
+                    break;
+            }
+
         } catch (SQLException e) {
             //TODO ТУТ БУДЕТ ВЫЗОВ ФУНКЦИИ ВЫДАЧИ ОШИБКИ
             System.out.println(e.getMessage());
         } finally {
             try {
+                ResultSet rs = (ResultSet) resSet;
+                ResultSetMetaData metaData = rs.getMetaData();
+                int colCount = metaData.getColumnCount();
+                while (rs.next()) {
+                    Map<String, Object> columns = new HashMap<String, Object>();
+                    for (int i = 1; i <= colCount; i++) {
+                        columns.put(metaData.getColumnLabel(i), rs.getObject(i));
+                    }
+                    result.add(columns);
+                }
                 c.close();
             } catch (Exception ex) {
                 Logger.getLogger(DBHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return rs;
+
+        return result;
     }
 
+    enum QueryType {
+
+        SELECT_TYPE,
+        UPDATE_TYPE
+    }
 }

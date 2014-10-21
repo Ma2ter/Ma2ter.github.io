@@ -15,17 +15,17 @@ import javax.servlet.ServletContext;
  */
 public class CommonHelper {
     
-    static CommonHelper commoneHelper = null;
+    static CommonHelper commonHelper = null;
     
     private CommonHelper() {
         
     };
     
     static public CommonHelper getInstance() {
-      if (commoneHelper == null)  {
-          commoneHelper = new CommonHelper();         
+      if (commonHelper == null)  {
+          commonHelper = new CommonHelper();         
       }
-      return commoneHelper;
+      return commonHelper;
     };
     
 
