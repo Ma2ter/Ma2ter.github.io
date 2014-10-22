@@ -4,26 +4,7 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
-    <context-param>
-        <param-name>rootPath</param-name>
-        <param-value>/trunk</param-value>
-    </context-param>
-    <context-param>
-        <param-name>dbUrl</param-name>
-        <param-value>jdbc:derby://localhost:1527/Letanir</param-value>
-    </context-param>
-    <context-param>
-        <param-name>dbDriver</param-name>
-        <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
-    </context-param>
-    <context-param>
-        <param-name>dbLogin</param-name>
-        <param-value>Letanir</param-value>
-    </context-param>
-    <context-param>
-        <param-name>dbPassword</param-name>
-        <param-value>1qaz@WSX</param-value>
-    </context-param>
+
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

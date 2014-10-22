@@ -14,6 +14,6 @@
     <body>
         <h1>This is good page</h1>
         <%@ include file = "/LogInOut/LogInOut.jsp" %>
-        <a href="<%= commonHelper.getInitParam("rootPath") %>/Page1.jsp">Bad page</a>
+        <a href="<%= helpers.ConstantHelper.rootPath %>/Page1.jsp">Bad page</a>
     </body>
 </html>

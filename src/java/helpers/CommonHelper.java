@@ -28,17 +28,4 @@ public class CommonHelper {
       return commonHelper;
     };
     
-
-    //Metod returns RootPath for web-application (in our case "/trunk")
-  /*  public String getRootPath (HttpServletRequest request){
-        return rootPath == null ? request.getServletContext().getInitParameter("rootPath"): rootPath;
-    };*/
-    public void setInitParam (ServletContext servletContext, String paramName){
-        initParamList.put(paramName, servletContext.getInitParameter(paramName));
-    }
-    
-    public String getInitParam (String paramName){
-        return initParamList.get(paramName);
-    }
-    private static Map <String, String> initParamList = new HashMap <String, String>();
 }
