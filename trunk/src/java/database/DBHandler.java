@@ -10,6 +10,7 @@ package database;
  * @author Ma2ter
  */
 import helpers.CommonHelper;
+import helpers.ConstantHelper;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,10 +22,10 @@ import java.util.logging.Logger;
 public class DBHandler {
 
     //Экземпляр объекта-одиночки.
-    static String dbUrl = CommonHelper.getInstance().getInitParam("dbUrl");
-    static String dbDriver = CommonHelper.getInstance().getInitParam("dbDriver");
-    static String dbLogin = CommonHelper.getInstance().getInitParam("dbLogin");
-    static String dbPassword = CommonHelper.getInstance().getInitParam("dbPassword");
+    static String dbUrl = ConstantHelper.dbUrl;
+    static String dbDriver = ConstantHelper.dbDriver;
+    static String dbLogin = ConstantHelper.dbLogin;
+    static String dbPassword = ConstantHelper.dbPassword;
 
     static DBHandler dbHandler = null;
 
