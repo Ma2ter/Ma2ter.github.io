@@ -11,8 +11,8 @@ package helpers;
  */
 public class ConstantHelper {
     public static String rootPath = "/trunk";
-    public static String dbUrl = "jdbc:derby://localhost:1527/main";
-    public static String dbLogin = "Letanir";
-    public static String dbPassword = "1qaz@WSX";
-    public static String dbDriver = "org.apache.derby.jdbc.ClientDriver";
+    public static String dbUrl = "jdbc:mysql://localhost:3306/main?zeroDateTimeBehavior=convertToNull";
+    public static String dbLogin = "root";
+    public static String dbPassword = "FollowYourDestiny1!";
+    public static String dbDriver = "com.mysql.jdbc.Driver";
 }

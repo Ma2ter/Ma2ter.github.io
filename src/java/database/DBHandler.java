@@ -53,7 +53,7 @@ public class DBHandler {
         System.out.println(cmd);
         List<Map<String, Object>> result = (List<Map<String, Object>>) query(cmd, QueryType.SELECT_TYPE);
         if (result != null) {
-            return (int) result.get(0).get("COUNT") != 0 ? true : false;
+            return (long) result.get(0).get("COUNT") != 0 ? true : false;
         }
         return false;
     }
