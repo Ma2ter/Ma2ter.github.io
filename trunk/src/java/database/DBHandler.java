@@ -9,7 +9,6 @@ package database;
  *
  * @author Ma2ter
  */
-import helpers.CommonHelper;
 import helpers.ConstantHelper;
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import main.User;
+import main.UserManager;
 
 public class DBHandler {
 
@@ -49,8 +50,7 @@ public class DBHandler {
 
     public Boolean checkUserExistence(String login, String password) {
         String cmd = String.format("Select count(*) as COUNT from USERS "
-                + "WHERE login=\'%s\' and password=\'%s\' ", login, password);
-        System.out.println(cmd);
+                + "where LOGIN=\'%s\' and PASSWORD=\'%s\' ", login, password);
         List<Map<String, Object>> result = (List<Map<String, Object>>) query(cmd, QueryType.SELECT_TYPE);
         if (result != null) {
             return (long) result.get(0).get("COUNT") != 0 ? true : false;
@@ -58,6 +58,16 @@ public class DBHandler {
         return false;
     }
 
+    public User findUserById(int id){
+        String cmd = String.format ("Select * from USERS where ID = \'%s\'", id);
+        List<Map<String, Object>> result = (List<Map<String, Object>>) query(cmd, QueryType.SELECT_TYPE);
+        if (result != null) {
+            return UserManager.getInstance().createUser((int)result.get(0).get("ID"), 
+                    (String)result.get(0).get("LOGIN"), (String)result.get(0).get("PASSWORD"));
+        }
+        return null;
+    }
+    
     public Object query(String cmd, QueryType queryType) {
         try {
             Class.forName(dbDriver);
@@ -105,7 +115,6 @@ public class DBHandler {
     }
 
     enum QueryType {
-
         SELECT_TYPE,
         UPDATE_TYPE
     }
