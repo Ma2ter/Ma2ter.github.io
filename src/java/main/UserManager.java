@@ -13,15 +13,35 @@ import java.util.List;
  * @author admin
  */
 public class UserManager {
-    public static User createUser(String login){
-        User user = new User(login);
+    
+    static UserManager userManager = null;
+    
+    private UserManager() {
+        
+    }
+    
+    static public UserManager getInstance(){
+        if (userManager == null) {
+            userManager = new UserManager();
+        }
+        return userManager;
+    }
+    
+    private User createUser(int id, String login, String password){
+        User user = new User(id, login, password);
         userList.add(user);
         return user;
     };
     //TODO
-    static void deleteUser(User user){};
-    static void findUserById(int id){};
-    static void findUserBySessionId(String sessionID){};
-    static void findUserByLogin(String login){};
+    private void deleteUser(User user){
+        userList.remove(user);
+    };
+    
+   /* private User findUserById(int id){
+        
+    };*/
+    
+    private void findUserBySessionId(String sessionID){};
+    private void findUserByLogin(String login){};
     static List<User> userList = new ArrayList<User>();
 }

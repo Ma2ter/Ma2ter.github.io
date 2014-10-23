@@ -10,19 +10,22 @@ package main;
  * @author admin
  */
 public class User {
-
-    public User(String login) {
-        this.login = login;
+    int id;
+    String login;
+    String password = null;
+    
+    public User(int id, String login, String password) {
+       setId(id);
+       setLogin(login);
+       setPassword(password);
     }
-   int ID;
-   String login;
-
-    public int getID() {
-        return ID;
+    
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int Id) {
+        this.id = id;
     }
 
     public String getLogin() {
@@ -31,6 +34,14 @@ public class User {
 
     public void setLogin(String login) {
         this.login = login;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+    
+    public void setPassword(String password){
+        this.password = password;
     }
 
 }
