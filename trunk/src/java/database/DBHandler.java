@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import main.User;
 import main.UserManager;
 
 public class DBHandler {
@@ -58,21 +57,22 @@ public class DBHandler {
         return false;
     }
 
-    public User findUserById(int id){
-        String cmd = String.format ("Select * from USERS where ID = \'%s\'", id);
-        List<Map<String, Object>> result = (List<Map<String, Object>>) query(cmd, QueryType.SELECT_TYPE);
-        if (result != null) {
-            return UserManager.getInstance().createUser((int)result.get(0).get("ID"), 
-                    (String)result.get(0).get("LOGIN"), (String)result.get(0).get("PASSWORD"));
-        }
-        return null;
+    /*   public User findUserById(int id){
+    String cmd = String.format ("Select * from USERS where ID = \'%s\'", id);
+    List<Map<String, Object>> result = (List<Map<String, Object>>) query(cmd, QueryType.SELECT_TYPE);
+    if (result != null) {
+    return UserManager.getInstance().createUser((int)result.get(0).get("ID"),
+    (String)result.get(0).get("LOGIN"), (String)result.get(0).get("PASSWORD"));
     }
+    return null;
+    }*/
     
     public Object query(String cmd, QueryType queryType) {
         try {
             Class.forName(dbDriver);
         } catch (Exception e) {
-            //TODO ТУТ БУДЕТ ВЫЗОВ ФУНКЦИИ ВЫДАЧИ ОШИБКИ
+            //DOEXCEPTION
+            System.out.println(e.getMessage());
         }
         Object result = "-1";
         Object resSet = null;
@@ -101,7 +101,7 @@ public class DBHandler {
             }
 
         } catch (SQLException e) {
-            //TODO ТУТ БУДЕТ ВЫЗОВ ФУНКЦИИ ВЫДАЧИ ОШИБКИ
+            //DOEXCEPTION
             System.out.println(e.getMessage());
         } finally {
             try {

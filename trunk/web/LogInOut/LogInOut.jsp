@@ -10,10 +10,12 @@
 
 <form name="logInForm" action="<%= helpers.ConstantHelper.rootPath %>/LogInOut/LogIn.jsp" method="POST">
     Login: <input type="text" name="login"><br>
-    Password: <input type="password" name="password">
+    Password: <input type="password" name="password"><br>
     <input type="submit" value="Submit">
 </form>
-<%--TODO --%>
+<form name="registrationForm" action="<%= helpers.ConstantHelper.rootPath %>/LogInOut/Registration.jsp" method="POST">
+    <input type="submit" value="registration button" name="Registration!" />
+</form>
 <%     if (session.getAttribute("failedAuth") == "true") {
         out.println("<p>Authorization failed </p>");
         session.setAttribute("failedAuth", "false");

@@ -5,43 +5,47 @@
  */
 package main;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 /**
  *
  * @author admin
  */
 public class User {
-    int id;
-    String login;
-    String password = null;
-    
-    public User(int id, String login, String password) {
-       setId(id);
-       setLogin(login);
-       setPassword(password);
-    }
-    
-    public int getId() {
-        return id;
+
+    //
+    HashMap<String, String> paramList;
+
+    public User(String params) {
+        paramList = new HashMap<String, String>();
+        setParams(params);
     }
 
-    public void setId(int Id) {
-        this.id = id;
+    public void setParams(String params) {
+        String[] paramSet = params.split(",");
+        for (String s : paramSet) {
+            paramList.put(s.split("=")[0], s.split("=")[1]);
+        }
+    }
+
+    //<editor-fold defaultstate="collapsed" desc="comment">
+    public int getId() {
+        return paramList.get("id") == null ? null : Integer.parseInt(paramList.get("id"));
     }
 
     public String getLogin() {
-        return login;
+        return paramList.get("login") == null ? null : paramList.get("login");
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-    
     public String getPassword() {
-        return password;
-    }
-    
-    public void setPassword(String password){
-        this.password = password;
+        return paramList.get("password") == null ? null : paramList.get("password");
     }
 
+    public String getEmail() {
+        return paramList.get("email") == null ? null : paramList.get("email");
+    }
+
+//</editor-fold>
 }
