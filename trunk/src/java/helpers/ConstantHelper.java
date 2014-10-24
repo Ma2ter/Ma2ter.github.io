@@ -12,7 +12,7 @@ package helpers;
 public class ConstantHelper {
     public static String rootPath = "/trunk";
     public static String dbUrl = "jdbc:mysql://localhost:3306/main?zeroDateTimeBehavior=convertToNull";
-    public static String dbLogin = "root";
+    public static String dbLogin = "admin";
     public static String dbPassword = "FollowYourDestiny1!";
     public static String dbDriver = "com.mysql.jdbc.Driver";
 }

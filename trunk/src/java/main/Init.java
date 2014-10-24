@@ -6,6 +6,7 @@
 package main;
 
 import helpers.CommonHelper;
+import helpers.ExceptionHandler;
 import javax.servlet.ServletConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,7 @@ public class Init extends HttpServlet {
 
 @Override
 public void init(ServletConfig servletConfig){
-
+    helpers.ExceptionHandler excH = new ExceptionHandler(database.DBHandler.getInstance());
 }
 
 }
