@@ -13,24 +13,18 @@ import java.util.List;
  *
  * @author admin
  */
-public class User {
+public class User extends interfaces.Entity {
 
     //
-    HashMap<String, String> paramList;
+    
 
     public User(String params) {
-        paramList = new HashMap<String, String>();
+        super();
         setParams(params);
     }
 
-    public void setParams(String params) {
-        String[] paramSet = params.split(",");
-        for (String s : paramSet) {
-            paramList.put(s.split("=")[0], s.split("=")[1]);
-        }
-    }
 
-    //<editor-fold defaultstate="collapsed" desc="comment">
+    //<editor-fold defaultstate="collapsed" desc="Getters">
     public int getId() {
         return paramList.get("id") == null ? null : Integer.parseInt(paramList.get("id"));
     }
