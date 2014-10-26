@@ -34,10 +34,12 @@ public abstract class Entity {
     }
 
     public String getParam(String paramName) {
+        String test = paramList.get(paramName);
         return paramList.get(paramName);
     }
 
-    public Map<String, String> getParams() {
+    public HashMap<String, String> getParams() {
         return paramList;
     }
+
 }
