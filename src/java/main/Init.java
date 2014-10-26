@@ -20,7 +20,9 @@ public class Init extends HttpServlet {
 
 @Override
 public void init(ServletConfig servletConfig){
-    helpers.ExceptionHandler excH = new ExceptionHandler(database.DBHandler.getInstance());
+    helpers.ExceptionHandler excH = new ExceptionHandler();
+    excH.addObservable(database.DBHandler.getInstance());
+    
 }
 
 }

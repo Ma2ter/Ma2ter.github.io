@@ -71,6 +71,16 @@ public class DBHandler implements interfaces.Observable {
         return false;
     }
 
+        public Boolean checkUserExistence(String login) {
+        String cmd = String.format("Select count(*) as COUNT from USERS "
+                + "where LOGIN=\'%s\'", login);
+        List<Map<String, Object>> result = querySelect(cmd);
+        if (result != null) {
+            return (long) result.get(0).get("COUNT") != 0 ? true : false;
+        }
+        return false;
+    }
+        
     /*   public User findUserById(int id){
      String cmd = String.format ("Select * from USERS where ID = \'%s\'", id);
      List<Map<String, Object>> result = (List<Map<String, Object>>) query(cmd, QueryType.SELECT_TYPE);
