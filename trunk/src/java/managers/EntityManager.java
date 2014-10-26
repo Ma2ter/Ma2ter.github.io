@@ -32,19 +32,22 @@ public class EntityManager {
      */
     public User createUser(String param) {
         User result = new User(param);
+        if(dBHandler.checkUserExistence(result.getLogin())) return null;
         dBHandler.addUser(result.getLogin(), result.getPassword());
         result.setParams("id=" + 
                 dBHandler.getUser(result.getLogin()).get("id"));
         addEntity(result);
         return result;
     }
-
     public User getUser(String param) {
 
         User result = (User) getEntity(new User(), param);
         return result;
     }
-
+    public void removeUser(User u){
+        removeEntity(u);           
+    }
+    
     /*
      *Set = ADD OR UPDATE (depends on example;
      *example - type of Entity to add/update
