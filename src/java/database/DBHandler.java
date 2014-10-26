@@ -50,6 +50,17 @@ public class DBHandler implements interfaces.Observable {
         queryUpdate(cmd);
     }
 
+    public Map<String, Object> getUser(String login) {
+        String cmd = String.format("Select * from USERS "
+                + "where LOGIN=\'%s\'", login);
+        ArrayList<Map<String, Object>> resultSet = querySelect(cmd);
+        if (resultSet.size() == 0) {
+            return null;
+        } else {
+            return resultSet.get(0);
+        }
+    }
+
     public Boolean checkUserExistence(String login, String password) {
         String cmd = String.format("Select count(*) as COUNT from USERS "
                 + "where LOGIN=\'%s\' and PASSWORD=\'%s\' ", login, password);
@@ -148,8 +159,8 @@ public class DBHandler implements interfaces.Observable {
             obs.update(e);
         }
     }
-  
-    private ArrayList<Map<String, Object>> convert(ResultSet resSet){
+
+    private ArrayList<Map<String, Object>> convert(ResultSet resSet) {
         ArrayList<Map<String, Object>> result = new ArrayList<Map<String, Object>>();
         try {
             ResultSetMetaData metaData = resSet.getMetaData();

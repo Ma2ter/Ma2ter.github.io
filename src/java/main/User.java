@@ -16,7 +16,9 @@ import java.util.List;
 public class User extends interfaces.Entity {
 
     //
-    
+    public User(){
+        super();
+    }
 
     public User(String params) {
         super();
